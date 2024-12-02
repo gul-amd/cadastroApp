@@ -9,3 +9,4 @@ Route::get('/create-user', [UserController::class, 'create']) -> name('user.crea
 Route::post('/store-user', [UserController::class, 'store']) -> name('user-store');
 Route::get('/edit-user/{user}', [UserController::class, 'edit']) -> name('user.edit');
 Route::put('/update-user/{user}', [UserController::class, 'update']) -> name('user-update');
+Route::delete('/destroy-user/{user}', [UserController::class, 'destroy']) -> name('user.destroy');

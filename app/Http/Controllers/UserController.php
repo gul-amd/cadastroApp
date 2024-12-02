@@ -70,4 +70,13 @@ public function index()
 
     }
 
+    public function destroy(User $user)
+    {
+        // apagar registro na db
+        $user->delete();
+
+        // Redirecionar o usuario, enviar a menssagem de sucesso
+        return redirect()->route('user.index')->with('sucess', 'Estudante apagado com sucesso!');
+    }
+
 }

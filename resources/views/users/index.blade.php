@@ -23,7 +23,15 @@
         Nome: {{ $user->name }}<br>
         Email: {{ $user->email }}<br>
         <a href="{{ route('user.show', ['user' => $user->id]) }}">Visualizar</a><br>
-        <a href="{{ route('user.edit', ['user' => $user->id]) }}">Editar</a><br><hr>
+        <a href="{{ route('user.edit', ['user' => $user->id]) }}">Editar</a><br>
+        {{--<a href="{{ route('user.destroy', ['user' => $user->id]) }}">Apagar</a><br><hr>--}}
+        <form method="POST" action="{{ route('user.destroy', ['user' => $user->id]) }}">
+            @csrf
+            @method('delete')
+            <button type="submit">Apagar</button>
+
+        </form><hr>
+
     @empty
 
     @endforelse
