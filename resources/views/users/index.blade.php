@@ -28,8 +28,7 @@
         <form method="POST" action="{{ route('user.destroy', ['user' => $user->id]) }}">
             @csrf
             @method('delete')
-            <button type="submit">Apagar</button>
-
+            <button type="submit" onclick="return confirm('tem acerteza que deja apagar o registro?')">Apagar</button>
         </form><hr>
 
     @empty
