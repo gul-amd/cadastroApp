@@ -16,14 +16,14 @@
         <p style="collor:#086">
             {{ session('sucess') }}
         </p>
-
     @endif
 
    @forelse ($users as $user)
         ID: {{ $user->id }}<br>
         Nome: {{ $user->name }}<br>
         Email: {{ $user->email }}<br>
-        <a href="{{ route('user.show', ['user' => $user->id]) }}">Visializar</a><br><hr>
+        <a href="{{ route('user.show', ['user' => $user->id]) }}">Visualizar</a><br>
+        <a href="{{ route('user.edit', ['user' => $user->id]) }}">Editar</a><br><hr>
     @empty
 
     @endforelse

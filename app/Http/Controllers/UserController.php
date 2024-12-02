@@ -40,7 +40,34 @@ public function index()
             'password' => $request->password,
         ]);
 
+        // Redirecionar o usuario, enviar a menssagem de sucesso
         return redirect()->route('user.index')->with('sucess', 'Estudante Cadastrado com sucesso!');
+    }
+
+    public function edit(User $user)
+    {
+
+        return view('users.edit', ['user' => $user]);
+
+    }
+
+    public function update(UserRequest $request, User $user)
+    {
+        //validar formulario
+        $request->validated();
+
+
+
+        //Eitar as informacoes do rehistro de banco de dados
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+
+        // Redirecionar o usuario, enviar a menssagem de sucesso
+        return redirect()->route('user.show',['user' => $user->id])->with('sucess', 'Estudante editado com sucesso!');
+
     }
 
 }

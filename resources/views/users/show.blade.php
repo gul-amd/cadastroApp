@@ -9,8 +9,17 @@
 <body>
 
     <a href="{{ route('user.index')}}">Listar</a><br>
+    <a href="{{ route('user.edit', ['user' => $user->id])}}">Editar</a><br>
+
 
     <h2>Vizualizar Estudante</h2>
+
+    @if (session('sucess'))
+    <p style="collor:#086">
+        {{ session('sucess') }}
+    </p>
+
+    @endif
 
     ID: {{ $user->id }}<br>
     Nome: {{ $user->name }}<br>
