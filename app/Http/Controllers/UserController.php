@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 
 class UserController extends Controller
 {
 
 public function index()
     {
+
+        // Recuperar os registos do banco de dados
+        $users = User::orderByDesc('id')->get();
+
         // Carregar a VIEW
-        return view('users.index');
+        return view('users.index', ['users' => $users]);
     }
 
     public function create()
@@ -29,7 +34,7 @@ public function index()
             'password' => $request->password,
         ]);
 
-        return redirect()
+        return redirect()->route('user.index')->with('sucess', 'Estudante Cadastrado com sucesso!');
     }
 
 }
