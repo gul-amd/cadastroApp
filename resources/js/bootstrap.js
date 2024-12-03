@@ -1,5 +1,6 @@
 /* Importar o framework Bootstrap */
 import 'bootstrap';
+
 import axios from 'axios';
 window.axios = axios;
 
