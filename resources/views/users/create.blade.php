@@ -14,25 +14,37 @@
 
     <x-alert />
 
-    <form action="{{ route('user-store') }}" method="POST">
+    <form action="{{ route('user-store') }}" method="POST" class="row g-3">
         @csrf
         @method('POST')
-        <dl class="row">
 
-            <dt class="col-sm-3">Nome </dt>
-            <dd class="col-sm-9"><input type="text" name="name" placeholder="Nome Completo" value="{{ old('name') }}"></dd>
+        <div class="col-md-12">
+            <label for="name" class="form-label">Nome</label>
+            <input type="text" name="name" class="form-control"
+            id="name" placeholder="Nome Completo"
+            value="{{ old('name') }}">
+        </div>
 
-            <dt class="col-sm-3">E-mail </dt>
-            <dd class="col-sm-9"><input type="email" name="email" placeholder="Seu Email" value="{{ old('email') }}"></dd>
+        <div class="col-md-6">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" name="email"
+            class="form-control" id="name"
+            placeholder="Seu Email" value="{{ old('email') }}">
+        </div>
 
-            <dt class="col-sm-3">Password </dt>
-            <dd class="col-sm-9"><input type="password" name="password" placeholder="Password com 6 caracter minimo" value="{{ old('password')}}"></dd>
+        <div class="col-md-6">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password"
+            class="form-control" id="password"
+            placeholder="Password com 6 caracter minimo" value="{{ old('password')}}">
+        </div>
 
-            <dt class="col-sm-3"></dt>
-            <dd class="col-sm-9"><button type="submit" class="btn btn-success btn-sm">Cadastrar</button></dd>
-        </dl>
+        <div class="col-12">
+        <button type="submit" class="btn btn-success btn-sm">Cadastrar</button>
+        </div>
 
     </form>
         </div>
+
 
 @endsection
