@@ -2,28 +2,42 @@
 
 @section('content')
 
-    <a href="{{ route('user.index')}}">Listar</a><br>
-    <a href="{{ route('user.edit', ['user' => $user->id])}}">Editar</a><br>
-    <form method="POST" action="{{ route('user.destroy', ['user' => $user->id]) }}">
-        @csrf
-        @method('delete')
-        <button type="submit" onclick="return confirm('tem acerteza que deja apagar o registro?')">Apagar</button>
-    </form>
 
+        <div class="card mt-4 mb-4 border-light shadow">
 
-    <h2>Vizualizar Estudante</h2>
+            <div class="card-header hstack gap-2">
+                <span>Visualizar Estudante</span>
+                <span class="ms-auto d-sm-flex flex-row">
+                    <a href="{{ route('user.index')}}" class="btn btn-info btn-sm me-1">Listar</a><br>
+                    <a href="{{ route('user.edit', ['user' => $user->id])}}" class="btn btn-warning btn-sm me-1">Editar</a><br>
+                    <form method="POST" action="{{ route('user.destroy', ['user' => $user->id]) }}">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('tem acerteza que deja apagar o registro?')">Apagar</button>
+                    </form>
+                </span>
+            </div>
 
-    @if (session('sucess'))
-    <p style="collor:#086">
-        {{ session('sucess') }}
-    </p>
+            <div class="card-body">
 
-    @endif
+                <x-alert />
 
-    ID: {{ $user->id }}<br>
-    Nome: {{ $user->name }}<br>
-    E-mail: {{ $user->email }}<br>
-    Cadastrado: {{ \carbon\carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}<br>
-    Editado: {{ \carbon\carbon::parse($user->updated_at)->format('d/m/Y H:i:s') }}<br>
+                <dl class="row">
+                    <dt class="col-sm-3">ID </dt>
+                    <dd class="col-sm-9">{{ $user->id }}</dd>
 
+                    <dt class="col-sm-3">Nome </dt>
+                    <dd class="col-sm-9">{{ $user->name }}</dd>
+
+                    <dt class="col-sm-3">E-mail </dt>
+                    <dd class="col-sm-9">{{ $user->email }}</dd>
+
+                    <dt class="col-sm-3">Cadastrado </dt>
+                    <dd class="col-sm-9">{{ \carbon\carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}</dd>
+
+                    <dt class="col-sm-3">Editado </dt>
+                    <dd class="col-sm-9">{{ \carbon\carbon::parse($user->updated_at)->format('d/m/Y H:i:s') }}</dd>
+                </dl>
+            </div>
+        </div>
 @endsection
