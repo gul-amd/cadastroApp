@@ -24,9 +24,9 @@
               <li><a href="{{ route('user.index') }}" class="nav-link px-2 text-white">Usuarios</a></li>
             </ul>
 
-            <div class="text-end">
+           {{-- <div class="text-end">
               <button type="button" class="btn btn-outline-light me-2">Login</button>
-            </div>
+            </div> --}}
           </div>
         </div>
       </header>
