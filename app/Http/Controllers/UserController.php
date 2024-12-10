@@ -51,6 +51,11 @@ public function index()
 
     }
 
+    public function dashboard()
+    {
+        return view('users.dashboard');
+    }
+
     public function update(UserRequest $request, User $user)
     {
         //validar formulario
