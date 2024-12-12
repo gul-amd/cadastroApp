@@ -8,7 +8,7 @@
             <div class="card-header hstack gap-2">
                 <span>Cadastrar Estudante</span>
                 <span class="ms-auto d-sm-flex flex-row">
-                    <a href="{{ route('user.index')}}" class="btn btn-info btn-sm me-1">Listar</a><br>
+                    <a href="{{ route('user.index')}}" class="btn btn-info btn-sm me-1">Dashboard</a><br>
                 </span>
             </div>
 

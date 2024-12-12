@@ -7,7 +7,7 @@
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-    <title>Cadastro Escolar</title>
+    <title>Dashboard</title>
 
 </head>
 <body>
@@ -20,8 +20,7 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="{{ route('user.index') }}" class="nav-link px-2 text-secondary">Home</a></li>
-              <li><a href="{{ route('user.index') }}" class="nav-link px-2 text-white">Usuarios</a></li>
+              <li><a href="{{ route('user.index') }}" class="nav-link px-2 text-white">HOME</a></li>
             </ul>
 
            {{-- <div class="text-end">

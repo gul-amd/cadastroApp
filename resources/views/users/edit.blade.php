@@ -7,13 +7,15 @@
         <div class="card-header hstack gap-2">
             <span>Editar Estudante</span>
             <span class="ms-auto d-sm-flex flex-row">
-                <a href="{{ route('user.index')}}" class="btn btn-info btn-sm me-1">Listar</a><br>
+
+                <a href="{{ route('user.index')}}" class="btn btn-secondary btn-sm me-1">Listar</a><br>
                 <a href="{{ route('user.show', ['user' => $user->id])}}" class="btn btn-warning btn-sm me-1">Vizualizar</a><br>
                 <form method="POST" action="{{ route('user.destroy', ['user' => $user->id]) }}">
                     @csrf
                     @method('delete')
-                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('tem acerteza que deja apagar o registro?')">Apagar</button>
+                    <button type="submit" class="btn btn-danger btn-sm me-1" onclick="return confirm('tem acerteza que deja apagar o registro?')">Apagar</button>
                 </form>
+                <a href="{{ route('user.index')}}" class="btn btn-info btn-sm me-1">Dashboard</a><br>
             </span>
         </div>
 

@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Mail\NovoUsuarioMail;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Mail;
+
+
+
 
 class UserController extends Controller
 {
@@ -11,11 +16,17 @@ class UserController extends Controller
 public function index()
     {
 
-        // Recuperar os registos do banco de dados
-        $users = User::orderByDesc('id')->get();
+        return view('users.index');
 
-        // Carregar a VIEW
-        return view('users.index', ['users' => $users]);
+    }
+
+    public function list()
+    {
+                // Recuperar os registos do banco de dados
+                $users = User::orderByDesc('id')->get();
+
+                // Carregar a VIEW
+                return view('users.list', ['users' => $users]);
     }
 
     public function show(User $user)
@@ -34,14 +45,19 @@ public function index()
         // Validar o formulario
         $request->validated();
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
         ]);
 
+        Mail::to($user->email)->send(new NovoUsuarioMail($user));
+        return redirect()->route('user.index')->with('success', 'Usuário cadastrado e e-mail enviado com sucesso!');
+
+
         // Redirecionar o usuario, enviar a menssagem de sucesso
-        return redirect()->route('user.index')->with('sucess', 'Estudante Cadastrado com sucesso!');
+        return redirect()->route('user.index')->with('success', 'Estudante cadastrado com sucesso!');
+
     }
 
     public function edit(User $user)
@@ -51,10 +67,6 @@ public function index()
 
     }
 
-    public function dashboard()
-    {
-        return view('users.dashboard');
-    }
 
     public function update(UserRequest $request, User $user)
     {
