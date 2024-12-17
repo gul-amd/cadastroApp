@@ -1,28 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-namespace App\Mail;
 
-use Illuminate\Mail\Mailable;
-use Illuminate\Mail\SendWelcomeMail;
+use App\Mail\SendWelcomeMail;
 use Illuminate\Support\Facades\Log;
-use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Exception;
 
 
-class MailController extends Controller,
+class MailController extends Controller
 {
     public function sendEmail() {
-        try{
+        try {
             $toEmailAddress = "gulamo.amd@gmail.com";
             $welcomeMessage = "Recebeu este email de teste";
-            $response = Mail::to($toEmailAddress)->send(new SendWelcomeMail($welcomeMessage));
-            dd($response);
-
-        }
-        catch(Exception $e) {
-            \Log::error("Unable to send email" . $e->getMessage());
+            Mail::to($toEmailAddress)->send(new SendWelcomeMail($welcomeMessage));
+            dd("Email enviado com sucesso!");
+        } catch (Exception $e) {
+            Log::error("Não foi possível enviar o e-mail: " . $e->getMessage());
         }
 
     }

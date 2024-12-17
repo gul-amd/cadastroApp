@@ -51,12 +51,7 @@ public function index()
             'password' => $request->password,
         ]);
 
-        Mail::to($user->email)->send(new NovoUsuarioMail($user));
-        return redirect()->route('user.index')->with('success', 'Usuário cadastrado e e-mail enviado com sucesso!');
-
-
-        // Redirecionar o usuario, enviar a menssagem de sucesso
-        return redirect()->route('user.index')->with('success', 'Estudante cadastrado com sucesso!');
+        return redirect()->route('user.list')->with('success', 'Estudante cadastrado com sucesso!');
 
     }
 
@@ -93,7 +88,7 @@ public function index()
         $user->delete();
 
         // Redirecionar o usuario, enviar a menssagem de sucesso
-        return redirect()->route('user.index')->with('sucess', 'Estudante apagado com sucesso!');
+        return redirect()->route('user.list')->with('sucess', 'Estudante apagado com sucesso!');
     }
 
 }

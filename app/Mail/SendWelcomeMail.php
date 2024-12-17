@@ -17,6 +17,8 @@ class SendWelcomeMail extends Mailable
 
     /**
      * Create a new message instance.
+     *
+     * @param string $welcomeMessage
      */
     public function __construct($welcomeMessage)
     {
@@ -31,6 +33,18 @@ class SendWelcomeMail extends Mailable
         return new Envelope(
             subject: 'Sending Welcome Mail in Laravel 11 Using Mailtrap',
         );
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->view('emails.welcome')
+                    ->with(['messageContent' => $this->welcomeMessage])
+                    ->subject('Welcome Email');
     }
 
     /**
