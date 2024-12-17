@@ -9,16 +9,18 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class postmail extends Mailable
+class SendWelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $welcomeMessage;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($welcomeMessage)
     {
-        //
+        $this->$welcomeMessage = $welcomeMessage;
     }
 
     /**
@@ -27,7 +29,7 @@ class postmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email from Cadastro App',
+            subject: 'Sending Welcome Mail in Laravel 11 Using Mailtrap',
         );
     }
 
@@ -37,7 +39,7 @@ class postmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.post-mail',
+            view: 'WelcomeEmail',
         );
     }
 
