@@ -42,6 +42,18 @@
             </select>
         </dd>
 
+        <dt class="col-sm-3">Responsável</dt>
+        <dd class="col-sm-9">
+            <select name="admin_id" class="col-md-4">
+                <option value="" {{ is_null(old('admin_id', $user->admin_id)) ? 'selected' : '' }}>Nenhum</option>
+                @foreach ($admins as $admin)
+                    <option value="{{ $admin->id }}" {{ old('admin_id', $user->admin_id) == $admin->id ? 'selected' : '' }}>
+                        {{ $admin->name }}
+                    </option>
+                @endforeach
+            </select>
+        </dd>
+
         <dt class="col-sm-3">E-mail </dt>
         <dd class="col-sm-9"><input type="email" name="email" placeholder="Seu Email" value="{{ old('email', $user->email) }}"></dd>
 

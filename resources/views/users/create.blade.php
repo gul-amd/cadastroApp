@@ -26,20 +26,34 @@
         </div>
 
         <div class="row">
-        <div class="form-group col-md-4">
-            <label for="role">Grupo</label>
-            <div class="dropdown-wrapper position-relative">
-            <select name="role" id="role" class="form-select" required>
-                <option value="user" {{ (isset($user) && $user->role == 'user') || !isset($user) ? 'selected' : '' }}>
-                    User
-                </option>
-                <option value="admin" {{ isset($user) && $user->role == 'admin' ? 'selected' : '' }}>
-                    Admin
-                </option>
-            </select>
-            <i class="bi bi-caret-down-fill position-absolute end-0 me-3 top-50 translate-middle-y"></i>
+            <div class="form-group col-md-4">
+                <label for="role">Grupo</label>
+                <div class="dropdown-wrapper position-relative">
+                    <select name="role" id="role" class="form-select" required>
+                        <option value="user" {{ (isset($user) && $user->role == 'user') || !isset($user) ? 'selected' : '' }}>
+                            User
+                        </option>
+                        <option value="admin" {{ isset($user) && $user->role == 'admin' ? 'selected' : '' }}>
+                            Admin
+                        </option>
+                    </select>
+                <i class="bi bi-caret-down-fill position-absolute end-0 me-3 top-50 translate-middle-y"></i>
+                </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="admin_id">Responsavel</label>
+                <select name="admin_id" id="admin_id" class="form-select">
+                    <option value="" {{ is_null(old('admin_id')) ? 'selected' : '' }}>Nenhum</option>
+                    @foreach ($admins as $admin)
+                        <option value="{{ $admin->id }}" {{ old('admin_id') == $admin->id ? 'selected' : '' }}>
+                            {{ $admin->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
         </div>
 
         <div class="col-md-6">

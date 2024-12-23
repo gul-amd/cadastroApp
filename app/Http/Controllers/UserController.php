@@ -38,7 +38,7 @@ public function index()
 
     }
 
-public function administradores()
+    public function administradores()
     {
 
         $users = User::where('role', 'admin')->orderByDesc('id')->get();
@@ -56,19 +56,22 @@ public function administradores()
 
     public function create()
     {
-        return view('users.create');
+        $admins = User::where('role', 'admin')->get();
+
+        return view('users.create', compact('admins'));
     }
 
     public function store(UserRequest $request)
     {
         // Validar o formulario
-        $request->validated();
+        $validated = $request->validated();
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
             'role' => $request->role,
+            'admin_id' => $validated['admin_id'] ?? null,
         ]);
 
         return redirect()->route('user.list')->with('success', 'Cadastrado com sucesso!');
@@ -78,7 +81,9 @@ public function administradores()
     public function edit(User $user)
     {
 
-        return view('users.edit', ['user' => $user]);
+        $admins = User::where('role', 'admin')->get();
+
+        return view('users.edit', compact('user', 'admins'));
 
     }
 
@@ -86,7 +91,7 @@ public function administradores()
     public function update(UserRequest $request, User $user)
     {
         //validar formulario
-        $request->validated();
+        $validated = $request->validated();
 
 
 
@@ -96,6 +101,7 @@ public function administradores()
             'email' => $request->email,
             'password' => $request->password,
             'role' => $request->role,
+            'admin_id' => $validated['admin_id'] ?? null,
         ]);
 
         // Redirecionar o usuario, enviar a menssagem de sucesso
