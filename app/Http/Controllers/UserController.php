@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use App\Mail\UserAssignedToAdmin;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -74,6 +76,11 @@ public function index()
             'admin_id' => $validated['admin_id'] ?? null,
         ]);
 
+        if ($user->admin_id) {
+            $admin = User::find($user->admin_id);
+            Mail::to($admin->email)->send(new UserAssignedToAdmin($admin->name, $user->name));
+        }
+
         return redirect()->route('user.list')->with('success', 'Cadastrado com sucesso!');
 
     }
@@ -117,5 +124,7 @@ public function index()
         // Redirecionar o usuario, enviar a menssagem de sucesso
         return redirect()->route('user.list')->with('sucess', 'Removido com sucesso!');
     }
+
+
 
 }

@@ -22,6 +22,7 @@
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
                 <th scope="col">Grupo</th>
+                <th scope="col">Responsavel</th>
                 <th scope="col" class="text-center">Acoes</th>
                 </tr>
             </thead>
@@ -33,6 +34,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
+                        <td>{{ $user->admin_id ? $user->admin->name : 'Nenhum' }}</td>
                         <td class="text-center">
                             <a href="{{ route('user.show', ['user' => $user->id]) }}" class="btn btn-primary btn-sm">Ver</a>
                             <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn btn-warning btn-sm">Editar</a>

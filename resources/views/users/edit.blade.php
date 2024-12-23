@@ -8,7 +8,7 @@
             <span>Editar Estudante</span>
             <span class="ms-auto d-sm-flex flex-row">
 
-                <a href="{{ route('user.index')}}" class="btn btn-secondary btn-sm me-1">Listar</a><br>
+                <a href="{{ route('user.list')}}" class="btn btn-secondary btn-sm me-1">Listar</a><br>
                 <a href="{{ route('user.show', ['user' => $user->id])}}" class="btn btn-warning btn-sm me-1">Vizualizar</a><br>
                 <form method="POST" action="{{ route('user.destroy', ['user' => $user->id]) }}">
                     @csrf
