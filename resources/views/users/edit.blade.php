@@ -34,6 +34,14 @@
         <dt class="col-sm-3">Nome </dt>
         <dd class="col-sm-9"><input type="text" name="name" placeholder="Nome Completo" value="{{ old('name', $user->name) }}"></dd>
 
+        <dt class="col-sm-3">Grupo </dt>
+        <dd class="col-sm-9">
+            <select name="role" class="col-md-4" required>
+                <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
+                <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
+            </select>
+        </dd>
+
         <dt class="col-sm-3">E-mail </dt>
         <dd class="col-sm-9"><input type="email" name="email" placeholder="Seu Email" value="{{ old('email', $user->email) }}"></dd>
 

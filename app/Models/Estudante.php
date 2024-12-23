@@ -9,5 +9,5 @@ class Estudante extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'password']; // Adicione os campos permitidos
+    protected $fillable = ['name', 'email', 'password','role']; // Adicione os campos permitidos
 }

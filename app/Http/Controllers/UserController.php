@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Mail\NovoUsuarioMail;
 use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Mail;
 
 
 
@@ -29,6 +27,27 @@ public function index()
                 return view('users.list', ['users' => $users]);
     }
 
+    public function usuarios()
+    {
+
+         // Recuperar os registos do banco de dados e filtrar apenas o role user
+        $users = User::where('role', 'user')->orderByDesc('id')->get();
+
+         // Carregar a VIEW
+        return view('users.listUsers', ['users' => $users]);
+
+    }
+
+public function administradores()
+    {
+
+        $users = User::where('role', 'admin')->orderByDesc('id')->get();
+
+         // Carregar a VIEW
+        return view('users.listAdmins', ['users' => $users]);
+
+    }
+
     public function show(User $user)
     {
 
@@ -49,9 +68,10 @@ public function index()
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
+            'role' => $request->role,
         ]);
 
-        return redirect()->route('user.list')->with('success', 'Estudante cadastrado com sucesso!');
+        return redirect()->route('user.list')->with('success', 'Cadastrado com sucesso!');
 
     }
 
@@ -70,15 +90,16 @@ public function index()
 
 
 
-        //Eitar as informacoes do rehistro de banco de dados
+        //Eitar as informacoes do registro de banco de dados
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
+            'role' => $request->role,
         ]);
 
         // Redirecionar o usuario, enviar a menssagem de sucesso
-        return redirect()->route('user.show',['user' => $user->id])->with('sucess', 'Estudante editado com sucesso!');
+        return redirect()->route('user.show',['user' => $user->id])->with('sucess', 'Editado com sucesso!');
 
     }
 
@@ -88,7 +109,7 @@ public function index()
         $user->delete();
 
         // Redirecionar o usuario, enviar a menssagem de sucesso
-        return redirect()->route('user.list')->with('sucess', 'Estudante apagado com sucesso!');
+        return redirect()->route('user.list')->with('sucess', 'Removido com sucesso!');
     }
 
 }

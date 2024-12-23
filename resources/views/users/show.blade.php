@@ -30,6 +30,9 @@
                     <dt class="col-sm-3">Nome </dt>
                     <dd class="col-sm-9">{{ $user->name }}</dd>
 
+                    <dt class="col-sm-3">Grupo </dt>
+                    <dd class="col-sm-9">{{ $user->role }}</dd>
+
                     <dt class="col-sm-3">E-mail </dt>
                     <dd class="col-sm-9">{{ $user->email }}</dd>
 

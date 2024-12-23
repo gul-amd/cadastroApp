@@ -25,6 +25,23 @@
             value="{{ old('name') }}">
         </div>
 
+        <div class="row">
+        <div class="form-group col-md-4">
+            <label for="role">Grupo</label>
+            <div class="dropdown-wrapper position-relative">
+            <select name="role" id="role" class="form-select" required>
+                <option value="user" {{ (isset($user) && $user->role == 'user') || !isset($user) ? 'selected' : '' }}>
+                    User
+                </option>
+                <option value="admin" {{ isset($user) && $user->role == 'admin' ? 'selected' : '' }}>
+                    Admin
+                </option>
+            </select>
+            <i class="bi bi-caret-down-fill position-absolute end-0 me-3 top-50 translate-middle-y"></i>
+            </div>
+        </div>
+        </div>
+
         <div class="col-md-6">
             <label for="email" class="form-label">E-mail</label>
             <input type="email" name="email"

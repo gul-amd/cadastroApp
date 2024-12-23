@@ -4,7 +4,7 @@
 
     <div class="card mt-4 mb-4 border-light shadow">
         <div class="card-header hstack gap-2">
-            <span>Listar Estudantes</span>
+            <span>Lista Completa</span>
             <span class="ms-auto">
                 <a href="{{ route('user.create') }}" class="btn btn-success btn-sm">Cadastrar</a>
                 <a href="{{ route('user.index') }}" class="btn btn-info btn-sm">Dashboard</a>
@@ -21,6 +21,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Email</th>
+                <th scope="col">Grupo</th>
                 <th scope="col" class="text-center">Acoes</th>
                 </tr>
             </thead>
@@ -32,6 +33,7 @@
                     <th>{{ $user->id }}</th>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->role }}</td>
                     <td class="text-center">
                         <a href="{{ route('user.show', ['user' => $user->id]) }}" class="btn btn-primary btn-sm">Ver</a>
                         <a href="{{ route('user.edit', ['user' => $user->id]) }}" class="btn btn-warning btn-sm">Editar</a>
