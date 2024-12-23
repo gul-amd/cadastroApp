@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('content')
+
 <div class="card mt-4 mb-4 border-none shadow">
     <div class="card-header hstack gap-2">
         <span>
